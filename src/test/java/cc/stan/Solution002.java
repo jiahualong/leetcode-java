@@ -25,8 +25,14 @@ public class Solution002 {
         int carry = 0;
         while (null != l1 || null != l2 || carry != 0) {
             int sum = carry;
-            if (null != l1) { sum += l1.val; l1 = l1.next; }
-            if (null != l2) { sum += l2.val; l2 = l2.next; }
+            if (null != l1) {
+                sum += l1.val;
+                l1 = l1.next;
+            }
+            if (null != l2) {
+                sum += l2.val;
+                l2 = l2.next;
+            }
             cur.next = new ListNode(sum % 10);
             cur = cur.next;
             carry = (sum / 10);
@@ -34,22 +40,23 @@ public class Solution002 {
         return head.next;
     }
 
+    class ListNode {
+        int val;
+        ListNode next;
 
-}
+        ListNode() {
+        }
 
-class ListNode {
-    int val;
-    ListNode next;
+        ListNode(int val) {
+            this.val = val;
+        }
 
-    ListNode() {
-    }
-
-    ListNode(int val) {
-        this.val = val;
-    }
-
-    ListNode(int val, ListNode next) {
-        this.val = val;
-        this.next = next;
+        ListNode(int val, ListNode next) {
+            this.val = val;
+            this.next = next;
+        }
     }
 }
+
+
+
