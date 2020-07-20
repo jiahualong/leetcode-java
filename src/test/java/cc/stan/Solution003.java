@@ -41,11 +41,9 @@ public class Solution003 {
         int minIndex = 0;
         for (int i = 0; i < sArray.length; i++) {
             minIndex = Math.max(minIndex, alpha[(int) sArray[i]]);
-
             maxSubStrLen = Math.max(maxSubStrLen, i - minIndex + 1);
             alpha[(int) sArray[i]] = i + 1;
         }
-
         return maxSubStrLen;
     }
 
