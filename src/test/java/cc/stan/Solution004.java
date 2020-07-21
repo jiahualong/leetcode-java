@@ -27,10 +27,10 @@ public class Solution004 {
 
         int n1len = nums1.length;
         int n2len = nums2.length;
-
+        int index1 = 0, index2 = 0;
         int x = 0, y = 0;
         int mid = (n1len + n2len) / 2;
-        int index1 = 0, index2 = 0;
+
         while ((index1 + index2) <= mid && index1 < n1len && index2 < n2len) {
             x = y;
             if (nums1[index1] < nums2[index2]) {
@@ -64,4 +64,40 @@ public class Solution004 {
         System.out.println(findMedianSortedArrays(new int[]{1, 2, 3, 4, 5}, new int[]{6, 7, 8, 9, 10}));
         //System.out.println(findMedianSortedArrays(new int[]{1, 4}, new int[]{5, 6, 9}));
     }
+
+    public double findMedianSortedArrays2(int[] nums1, int[] nums2) {
+        int n1len = nums1.length;
+        int n2len = nums2.length;
+        int idx1 = 0, idx2 = 0;
+        int x = 0, y = 0;
+        int mid = (n1len + n2len) / 2;
+
+        while ((idx1 + idx2) <= mid && idx1 < n1len && idx2 < n2len) {
+            x = y;
+            if (nums1[idx1] < nums2[idx2]) {
+                y = nums1[idx1++];
+            } else {
+                y = nums2[idx2++];
+            }
+        }
+        if (idx1 == n1len) {
+            while ((idx1 + idx2) <= mid) {
+                x = y;
+                y = nums2[idx2++];
+            }
+        }
+        if (idx2 == n2len) {
+            while ((idx1 + idx2) <= mid) {
+                x = y;
+                y = nums1[idx1++];
+            }
+        }
+
+        if ((n1len + n2len) % 2 == 0) {
+            return ((double) x + y) / 2;
+        } else {
+            return (double) y;
+        }
+    }
 }
+
